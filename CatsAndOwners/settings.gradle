@@ -1,0 +1,5 @@
+rootProject.name = 'CatsAndOwners'
+include 'services'
+include 'dao'
+include 'controllers'
+
