@@ -27,6 +27,6 @@ public class Owner {
 
   @Setter
   @Column(name = "Cats")
-  @OneToMany()
+  @OneToMany(mappedBy = "Owner")
   private List<Cat> cats;
 }
