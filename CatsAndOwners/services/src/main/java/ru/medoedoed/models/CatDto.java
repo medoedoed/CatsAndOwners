@@ -18,7 +18,7 @@ public class CatDto {
   @PastOrPresent(message = "The birth date shouldn't have to be in the future ")
   private LocalDate birthDate;
 
-  @NotBlank(message = "Breed field shouldn't be blank")
+  @NotBlank(message = "Breed shouldn't be blank")
   private String breed;
 
   @NotBlank(message = "ColorID shouldn't be blank")

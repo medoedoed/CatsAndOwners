@@ -6,9 +6,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ColorDto {
+public class CatColorDto {
   private long id;
 
-  @NotBlank(message = "Color name field shouldn't be blank")
+  @NotBlank(message = "Color name shouldn't be blank")
   private String colorName;
 }

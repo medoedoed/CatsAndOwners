@@ -7,5 +7,5 @@ import ru.medoedoed.models.Cat;
 
 @Repository
 public interface CatDao extends JpaRepository<Cat, Long> {
-  Optional<Cat> findByNameAndOwner(String name, String ownerName);
+  //Optional<Cat> findByNameAndOwner(String name, String ownerName);
 }
