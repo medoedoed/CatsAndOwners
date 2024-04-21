@@ -31,7 +31,7 @@ public class CatApplicator implements DataApplicator<CatDto, Cat> {
   }
 
   @Override
-  public CatDto JpaToData(Cat jpa) {
+  public CatDto JpaToData(@NotNull Cat jpa) {
     return CatDto.builder()
         .id(jpa.getId())
         .name(jpa.getName())

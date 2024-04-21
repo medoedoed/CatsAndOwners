@@ -1,5 +1,6 @@
 package ru.medoedoed.services.DataApplicator;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import ru.medoedoed.dao.CatDao;
 import ru.medoedoed.models.Cat;
@@ -11,7 +12,7 @@ public class OwnerApplicator implements DataApplicator<OwnerDto, Owner> {
   private final CatDao catDao;
 
   @Override
-  public Owner DataToJpa(OwnerDto data) {
+  public Owner DataToJpa(@NotNull OwnerDto data) {
     var owner = new Owner();
     owner.setId(data.getId());
     owner.setName(data.getName());
@@ -22,7 +23,7 @@ public class OwnerApplicator implements DataApplicator<OwnerDto, Owner> {
   }
 
   @Override
-  public OwnerDto JpaToData(Owner jpa) {
+  public OwnerDto JpaToData(@NotNull Owner jpa) {
     return OwnerDto.builder()
         .id(jpa.getId())
         .name(jpa.getName())
