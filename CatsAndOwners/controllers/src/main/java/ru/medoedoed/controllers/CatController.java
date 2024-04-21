@@ -1,27 +1,21 @@
 package ru.medoedoed.controllers;
 
+import jakarta.validation.Valid;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.CatDto;
 import ru.medoedoed.services.concreteServices.CatService;
 
-import java.util.NoSuchElementException;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cats")
+@Valid
 public class CatController {
   private final CatService catService;
 
-  @ResponseStatus(value = HttpStatus.NOT_FOUND)
-  @ExceptionHandler(NoSuchElementException.class)
-  public String return404(NoSuchElementException ex) {
-    return ex.getMessage();
-  }
-
   @GetMapping("/{id}")
-  public CatDto getCat(@PathVariable Long id) {
+  public CatDto getCat(@PathVariable @NonNull Long id) {
     return catService.getById(id);
   }
 
@@ -31,17 +25,17 @@ public class CatController {
   }
 
   @PostMapping
-  public long newCat(@RequestBody CatDto catData) {
+  public long newCat(@RequestBody @Valid @NonNull CatDto catData) {
     return catService.save(catData);
   }
 
   @PutMapping
-  public void UpdateCat(@RequestBody CatDto catData) {
+  public void updateCat(@Valid @NonNull @RequestBody CatDto catData) {
     catService.update(catData);
   }
 
   @DeleteMapping("/{id}")
-  public void DeleteCat(@PathVariable Long id) {
+  public void deleteCat(@NonNull @PathVariable Long id) {
     catService.delete(id);
   }
 }
