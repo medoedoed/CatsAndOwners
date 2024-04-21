@@ -5,6 +5,4 @@ import org.springframework.stereotype.Repository;
 import ru.medoedoed.models.CatColor;
 
 @Repository
-public interface ColorDao extends JpaRepository<CatColor, Long> {
-  // Optional<CatColor> findByColorName (String name);
-}
+public interface ColorDao extends JpaRepository<CatColor, Long> {}

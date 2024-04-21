@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Getter
 @Setter
-@Table(name = "Cats")
+@Getter
+@Table(name = "Owners")
 @NoArgsConstructor
-public class Cat {
+public class Cat implements JpaEntity {
   @Id
   @Column(name = "CatID")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +42,9 @@ public class Cat {
       inverseJoinColumns = @JoinColumn(name = "SecondCatId"))
   @Column(name = "Friends")
   private List<Cat> friends;
+
+  @Override
+  public long getId() {
+    return id;
+  }
 }

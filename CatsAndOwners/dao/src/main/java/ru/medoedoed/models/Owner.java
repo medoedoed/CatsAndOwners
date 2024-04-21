@@ -1,19 +1,18 @@
 package ru.medoedoed.models;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "Owners")
 @NoArgsConstructor
-public class Owner {
+public class Owner implements JpaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "OwnerID")
@@ -29,4 +28,9 @@ public class Owner {
   @Column(name = "Cats")
   @OneToMany(mappedBy = "Owner")
   private List<Cat> cats;
+
+  @Override
+  public long getId() {
+    return id;
+  }
 }

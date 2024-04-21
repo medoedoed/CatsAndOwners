@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "CatColors")
 @NoArgsConstructor
-public class CatColor {
+public class CatColor implements JpaEntity  {
   @Id
   @Column(name = "ColorID")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,4 +19,9 @@ public class CatColor {
 
   @Column(name = "ColorName")
   private String colorName;
+
+  @Override
+  public long getId() {
+    return id;
+  }
 }
