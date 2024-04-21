@@ -1,12 +1,14 @@
-package ru.medoedoed.services.DataApplicator;
+package ru.medoedoed.services.dataApplicator;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.medoedoed.dao.CatDao;
 import ru.medoedoed.models.Cat;
 import ru.medoedoed.models.Owner;
 import ru.medoedoed.models.OwnerDto;
 
+@Component
 @RequiredArgsConstructor
 public class OwnerApplicator implements DataApplicator<OwnerDto, Owner> {
   private final CatDao catDao;

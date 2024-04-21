@@ -1,13 +1,15 @@
-package ru.medoedoed.services.DataApplicator;
+package ru.medoedoed.services.dataApplicator;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import ru.medoedoed.dao.CatDao;
 import ru.medoedoed.dao.ColorDao;
 import ru.medoedoed.dao.OwnerDao;
 import ru.medoedoed.models.Cat;
 import ru.medoedoed.models.CatDto;
 
+@Component
 @RequiredArgsConstructor
 public class CatApplicator implements DataApplicator<CatDto, Cat> {
   private final CatDao catDao;

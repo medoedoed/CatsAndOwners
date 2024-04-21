@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import ru.medoedoed.models.JpaEntity;
-import ru.medoedoed.services.DataApplicator.DataApplicator;
+import ru.medoedoed.services.dataApplicator.DataApplicator;
 
 @RequiredArgsConstructor
 public class ServiceImpl<JpaT extends JpaEntity, DataT> implements Service<DataT> {
