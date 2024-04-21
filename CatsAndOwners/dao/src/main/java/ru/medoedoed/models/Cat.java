@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "Owners")
+@Table(name = "Cats")
 @NoArgsConstructor
 public class Cat implements JpaEntity {
   @Id
@@ -27,11 +27,9 @@ public class Cat implements JpaEntity {
   @Column(name = "CatBreed")
   private String breed;
 
-  @Column(name = "CatColor")
   @ManyToOne
   private CatColor color;
 
-  @Column(name = "Owner")
   @ManyToOne
   private Owner owner;
 

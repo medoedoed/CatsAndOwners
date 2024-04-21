@@ -1,5 +1,6 @@
 package ru.medoedoed.services.dataApplicator;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -23,12 +24,27 @@ public class CatApplicator implements DataApplicator<CatDto, Cat> {
     cat.setName(data.getName());
     cat.setBirthDate(data.getBirthDate());
     cat.setBreed(data.getBreed());
-    cat.setColor(colorDao.findById(data.getColorId()).orElseThrow());
-    cat.setOwner(ownerDao.findById(data.getOwnerId()).orElseThrow());
-    cat.setFriends(
-        data.getFriendsId().stream()
-            .map(friendId -> catDao.findById(friendId).orElseThrow())
-            .toList());
+    cat.setColor(
+        colorDao
+            .findById(data.getColorId())
+            .orElseThrow(
+                () ->
+                    new EntityNotFoundException(
+                        "Color with id " + data.getColorId() + " not found")));
+    cat.setOwner(
+        ownerDao
+            .findById(data.getOwnerId())
+            .orElseThrow(
+                () ->
+                    new EntityNotFoundException(
+                        "Owner with id " + data.getColorId() + " not found")));
+    if (data.getFriendsId() != null) {
+      cat.setFriends(
+          data.getFriendsId().stream()
+              .map(friendId -> catDao.findById(friendId).orElseThrow())
+              .toList());
+    }
+
     return cat;
   }
 

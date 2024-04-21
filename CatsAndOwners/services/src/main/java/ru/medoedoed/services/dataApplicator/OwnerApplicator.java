@@ -19,8 +19,10 @@ public class OwnerApplicator implements DataApplicator<OwnerDto, Owner> {
     owner.setId(data.getId());
     owner.setName(data.getName());
     owner.setBirthDate(data.getBirthDate());
-    owner.setCats(
-        data.getCatsId().stream().map(catId -> catDao.findById(catId).orElseThrow()).toList());
+    if (owner.getCats() != null) {
+      owner.setCats(
+          data.getCatsId().stream().map(catId -> catDao.findById(catId).orElseThrow()).toList());
+    }
     return owner;
   }
 
