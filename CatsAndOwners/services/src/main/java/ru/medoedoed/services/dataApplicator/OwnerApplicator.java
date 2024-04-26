@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import ru.medoedoed.dao.CatDao;
 import ru.medoedoed.models.Cat;
 import ru.medoedoed.models.Owner;
-import ru.medoedoed.models.OwnerDto;
+import ru.medoedoed.models.DataEntities.OwnerDto;
 
 @Component
 @RequiredArgsConstructor

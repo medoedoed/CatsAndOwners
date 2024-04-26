@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: security-security
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
@@ -6,4 +8,7 @@ spring:
     password: "postgres"
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
+token:
+  signing:
+    key: SDGIOHSFG7SGML2F420FJ2CE9F2E2KC223RFDFDFOJE

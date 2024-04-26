@@ -1,4 +1,4 @@
-package ru.medoedoed.models;
+package ru.medoedoed.models.DataEntities;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

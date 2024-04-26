@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.CatColorDto;
+import ru.medoedoed.models.DataEntities.CatColorDto;
 import ru.medoedoed.services.concreteServices.ColorService;
 
 import java.util.List;

@@ -8,7 +8,7 @@ import ru.medoedoed.dao.CatDao;
 import ru.medoedoed.dao.ColorDao;
 import ru.medoedoed.dao.OwnerDao;
 import ru.medoedoed.models.Cat;
-import ru.medoedoed.models.CatDto;
+import ru.medoedoed.models.DataEntities.CatDto;
 
 @Component
 @RequiredArgsConstructor
