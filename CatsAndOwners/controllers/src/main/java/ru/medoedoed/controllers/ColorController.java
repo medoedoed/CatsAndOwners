@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.CatColorDto;
 import ru.medoedoed.services.concreteServices.ColorService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/colors")
@@ -19,11 +21,11 @@ public class ColorController {
   }
 
   @GetMapping()
-  public Iterable<CatColorDto> getAll() {
+  public List<CatColorDto> getAll() {
     return colorService.getAll();
   }
 
-  @PostMapping
+  @PostMapping()
   public long newColor(@RequestBody @Valid @NonNull CatColorDto colorData) {
     return colorService.save(colorData);
   }

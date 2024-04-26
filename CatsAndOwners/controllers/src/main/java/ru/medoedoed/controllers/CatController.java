@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.CatDto;
 import ru.medoedoed.services.concreteServices.CatService;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cats")
@@ -20,7 +22,7 @@ public class CatController {
   }
 
   @GetMapping()
-  public Iterable<CatDto> getAll() {
+  public List<CatDto> getAll() {
     return catService.getAll();
   }
 
