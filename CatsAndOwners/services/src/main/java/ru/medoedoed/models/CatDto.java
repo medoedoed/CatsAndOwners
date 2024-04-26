@@ -1,6 +1,7 @@
 package ru.medoedoed.models;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,11 +21,11 @@ public class CatDto {
 
   private String breed;
 
-  @NotBlank(message = "ColorID shouldn't be blank")
-  private long colorId;
+  @NotNull
+  private Long colorId;
 
-  @NotBlank(message = "OwnerID shouldn't be blank")
-  private long ownerId;
+  @NotNull
+  private Long ownerId;
 
   private List<Long> friendsId;
 }

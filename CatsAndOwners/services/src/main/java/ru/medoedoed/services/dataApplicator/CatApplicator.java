@@ -20,7 +20,7 @@ public class CatApplicator implements DataApplicator<CatDto, Cat> {
   @Override
   public Cat DataToJpa(@NotNull CatDto data) {
     var cat = new Cat();
-    cat.setId(null);
+    cat.setId(data.getId());
     cat.setName(data.getName());
     cat.setBirthDate(data.getBirthDate());
     cat.setBreed(data.getBreed());

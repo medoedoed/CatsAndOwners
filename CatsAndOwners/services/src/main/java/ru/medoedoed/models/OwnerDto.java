@@ -1,6 +1,7 @@
 package ru.medoedoed.models;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.Builder;
@@ -14,7 +15,7 @@ public class OwnerDto {
   @NotBlank(message = "Name field shouldn't be blank")
   private String name;
 
-  @NotBlank(message = "Birth date field shouldn't be blank")
+  @PastOrPresent(message = "The birth date shouldn't have to be in the future ")
   private LocalDate birthDate;
 
   private List<Long> catsId;
