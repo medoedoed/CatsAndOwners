@@ -19,6 +19,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")
 
+    implementation("org.springframework.security:spring-security-core:6.2.3")
+
     //Lombok
     compileOnly("org.projectlombok:lombok:1.18.30")
     annotationProcessor("org.projectlombok:lombok:1.18.30")
