@@ -16,7 +16,7 @@ public class Cat implements JpaEntity {
   @Id
   @Column(name = "CatID")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(name = "CatName")
   private String name;

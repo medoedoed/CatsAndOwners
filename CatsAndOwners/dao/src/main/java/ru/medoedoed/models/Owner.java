@@ -16,7 +16,7 @@ public class Owner implements JpaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "OwnerID")
-  private long id;
+  private Long id;
 
   @Column(name = "OwnerName")
   private String name;

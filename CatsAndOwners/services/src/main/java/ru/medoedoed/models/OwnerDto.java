@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Builder
 public class OwnerDto {
-  private long id;
+  private Long id;
 
   @NotBlank(message = "Name field shouldn't be blank")
   private String name;

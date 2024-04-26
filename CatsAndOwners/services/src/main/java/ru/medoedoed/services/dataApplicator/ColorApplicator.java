@@ -10,7 +10,7 @@ public class ColorApplicator implements DataApplicator<CatColorDto, CatColor> {
   @Override
   public CatColor DataToJpa(@NotNull CatColorDto data) {
     var catColor = new CatColor();
-    catColor.setId(data.getId());
+    catColor.setId(null);
     catColor.setColorName(data.getColorName());
     return catColor;
   }

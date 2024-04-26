@@ -14,7 +14,7 @@ public class CatColor implements JpaEntity  {
   @Id
   @Column(name = "ColorID")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private Long id;
 
   @Column(name = "ColorName")
   private String colorName;
