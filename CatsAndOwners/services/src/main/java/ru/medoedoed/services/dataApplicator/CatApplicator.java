@@ -37,7 +37,7 @@ public class CatApplicator implements DataApplicator<CatDto, Cat> {
             .orElseThrow(
                 () ->
                     new EntityNotFoundException(
-                        "Owner with id " + data.getColorId() + " not found")));
+                        "Owner with id " + data.getOwnerId() + " not found")));
     if (data.getFriendsId() != null) {
       cat.setFriends(
           data.getFriendsId().stream()

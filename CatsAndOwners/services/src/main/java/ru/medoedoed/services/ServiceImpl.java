@@ -8,7 +8,7 @@ import ru.medoedoed.models.JpaEntity;
 import ru.medoedoed.services.dataApplicator.DataApplicator;
 
 @RequiredArgsConstructor
-public class ServiceImpl<JpaT extends JpaEntity, DataT> implements Service<DataT> {
+public abstract class ServiceImpl<JpaT extends JpaEntity, DataT> implements Service<DataT> {
   protected final JpaRepository<JpaT, Long> jpaRepository;
   protected final DataApplicator<DataT, JpaT> applicator;
 
