@@ -31,12 +31,12 @@ public class JwtService {
 
   private String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
     return Jwts.builder()
-        .setClaims(extraClaims)
-        .setSubject(userDetails.getUsername())
-        .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis() + 100000 * 60 * 24))
-        .signWith(SignatureAlgorithm.HS256, getSigningKey())
-        .compact();
+            .setClaims(extraClaims)
+            .setSubject(userDetails.getUsername())
+            .setIssuedAt(new Date(System.currentTimeMillis()))
+            .setExpiration(new Date(System.currentTimeMillis() + 100000 * 60 * 24))
+            .signWith(SignatureAlgorithm.HS256, getSigningKey())
+            .compact();
   }
 
   public String extractUserName(String token) {
@@ -61,12 +61,12 @@ public class JwtService {
     return (userName.equals(userDetails.getUsername())) && !isTokenExpired(token);
   }
 
+  private Claims extractAllClaims(String token) {
+    return Jwts.parser().setSigningKey(getSigningKey()).parseClaimsJwt(token).getBody();
+  }
+
   private Key getSigningKey() {
     byte[] keyBytes = jwtSigningKey.getBytes(StandardCharsets.UTF_8);
     return new SecretKeySpec(keyBytes, SignatureAlgorithm.HS256.getJcaName());
-  }
-
-  private Claims extractAllClaims(String token) {
-    return Jwts.parser().setSigningKey(getSigningKey()).parseClaimsJwt(token).getBody();
   }
 }

@@ -9,7 +9,6 @@ import ru.medoedoed.models.AuthEntities.JwtAuthenticationResponse;
 import ru.medoedoed.models.AuthEntities.SignInRequest;
 import ru.medoedoed.models.AuthEntities.SignUpRequest;
 import ru.medoedoed.models.DataEntities.UserDto;
-import ru.medoedoed.models.User;
 import ru.medoedoed.services.concreteServices.UserService;
 import ru.medoedoed.utils.UserRole;
 
@@ -22,13 +21,13 @@ public class AuthenticationService {
   private final AuthenticationManager authenticationManager;
 
   public JwtAuthenticationResponse signUp(SignUpRequest request) {
-    var user = UserDto.builder()
+    var userData = UserDto.builder()
             .username(request.getUsername())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(UserRole.user).
             build();
-    userService.create(user);
-
+    userService.save(userData);
+    var user = userService.getByUsername(request.getUsername());
     var jwt = jwtService.generateToken(user);
     return new JwtAuthenticationResponse(jwt);
   }
