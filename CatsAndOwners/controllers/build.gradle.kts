@@ -18,6 +18,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")
+    implementation("com.jayway.jsonpath:json-path:2.9.0")
+    implementation("org.springdoc:springdoc-openapi-core:1.1.49")
+
 
     implementation("org.springframework.security:spring-security-core:6.2.3")
 
