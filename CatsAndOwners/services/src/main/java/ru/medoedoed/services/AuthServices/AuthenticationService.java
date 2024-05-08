@@ -1,8 +1,6 @@
 package ru.medoedoed.services.AuthServices;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.medoedoed.models.AuthEntities.JwtAuthenticationResponse;
@@ -18,31 +16,23 @@ public class AuthenticationService {
   private final UserService userService;
   private final JwtService jwtService;
   private final PasswordEncoder passwordEncoder;
-  private final AuthenticationManager authenticationManager;
-
+  
   public JwtAuthenticationResponse signUp(SignUpRequest request) {
     var userData = UserDto.builder()
             .username(request.getUsername())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(UserRole.user).
             build();
-    userService.save(userData);
-    var user = userService.getByUsername(request.getUsername());
-    var jwt = jwtService.generateToken(user);
+    Long userId = userService.save(userData);
+    var jwt = jwtService.generateToken(userId);
     return new JwtAuthenticationResponse(jwt);
   }
 
-  public JwtAuthenticationResponse signIn(SignInRequest request) {
-    authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
-            request.getUsername(),
-            request.getPassword()
-    ));
-
-    var user = userService
-            .userDetailsService()
-            .loadUserByUsername(request.getUsername());
-
-    var jwt = jwtService.generateToken(user);
-    return new JwtAuthenticationResponse(jwt);
+  public String signIn(SignInRequest request) {
+    var user = userService.getByUsername(request.getUsername());
+    if (user != null && passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+      return jwtService.generateToken(user.getId());
+    }
+    return null;
   }
 }

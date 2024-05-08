@@ -1,29 +1,33 @@
 package ru.medoedoed.services.concreteServices;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.medoedoed.dao.OwnerDao;
 import ru.medoedoed.dao.UserDao;
 import ru.medoedoed.models.DataEntities.OwnerDto;
 import ru.medoedoed.models.DataEntities.UserDto;
 import ru.medoedoed.models.User;
+import ru.medoedoed.services.ServiceImpl;
+import ru.medoedoed.services.dataApplicator.DataApplicator;
 import ru.medoedoed.services.dataApplicator.OwnerApplicator;
-import ru.medoedoed.services.dataApplicator.UserApplicator;
 import ru.medoedoed.utils.UserRole;
 
 @Service
-@RequiredArgsConstructor
-public class UserService {
+public class UserService extends ServiceImpl<User, UserDto> {
   private final UserDao userDao;
   private final OwnerDao ownerDao;
-  private final UserApplicator userApplicator;
   private final OwnerApplicator ownerApplicator;
 
-  public Long save(UserDto userData) {
-    return userDao.save(userApplicator.DataToJpa(userData)).getId();
+  public UserService(
+      JpaRepository<User, Long> jpaRepository,
+      DataApplicator<UserDto, User> applicator,
+      OwnerDao ownerDao,
+      OwnerApplicator ownerApplicator) {
+    super(jpaRepository, applicator);
+    this.userDao = (UserDao) jpaRepository;
+    this.ownerDao = ownerDao;
+    this.ownerApplicator = ownerApplicator;
   }
 
   public Long createOwner(OwnerDto ownerData) {
@@ -34,19 +38,15 @@ public class UserService {
     return ownerDao.save(ownerApplicator.DataToJpa(ownerData)).getId();
   }
 
-  public User getByUsername(String username) {
-    return userDao
-        .findByUsername(username)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
-  }
-
-  public UserDetailsService userDetailsService() {
-    return this::getByUsername;
-  }
 
   public UserDto getCurrentUser() {
     var username = SecurityContextHolder.getContext().getAuthentication().getName();
-    return userApplicator.JpaToData(getByUsername(username));
+    return getByUsername(username);
+  }
+
+  public UserDto getByUsername(String username) {
+    return applicator.JpaToData(userDao.findByUsername(username)
+       .orElseThrow(() -> new IllegalArgumentException("User with username " + username + " not found")));
   }
 
   @Deprecated
