@@ -31,9 +31,10 @@ public class Cat implements JpaEntity {
   private CatColor color;
 
   @ManyToOne
+  @JoinColumn(name = "OwnerID")
   private Owner owner;
 
-  @ManyToMany()
+  @ManyToMany
   @JoinTable(
       name = "CatFriends",
       joinColumns = @JoinColumn(name = "FirstCatId"),

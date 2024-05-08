@@ -9,7 +9,12 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 token:
   signing:
-    key: SDGIOHSFG7SGML2F420FJ2CE9F2E2KC223RFDFDFOJE
+    key: SDFUEI1389FESIF032OIFISHF9832JFDA
+    expiration: 86400000

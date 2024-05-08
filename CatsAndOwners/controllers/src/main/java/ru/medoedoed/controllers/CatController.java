@@ -27,7 +27,7 @@ public class CatController {
   }
 
   @PostMapping
-  public long newCat(@RequestBody @Valid @NonNull CatDto catData) {
+  public Long newCat(@RequestBody @Valid @NonNull CatDto catData) {
     return catService.save(catData);
   }
 

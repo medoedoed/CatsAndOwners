@@ -20,13 +20,16 @@ public class UserApplicator implements DataApplicator<UserDto, User> {
     user.setPassword(data.getPassword());
     user.setRole(data.getRole());
     user.setId(data.getId());
-    user.setOwner(
-        ownerDao
-            .findById(data.getOwnerId())
-            .orElseThrow(
-                () ->
-                    new EntityNotFoundException(
-                        "Owner with id " + data.getOwnerId() + " not found")));
+    if (data.getOwnerId() != null) {
+      user.setOwner(
+          ownerDao
+              .findById(data.getOwnerId())
+              .orElseThrow(
+                  () ->
+                      new EntityNotFoundException(
+                          "Owner with id " + data.getOwnerId() + " not found")));
+    }
+
     return user;
   }
 
