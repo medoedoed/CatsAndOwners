@@ -8,7 +8,8 @@ spring:
     password: "postgres"
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
+
 token:
   signing:
     key: SDGIOHSFG7SGML2F420FJ2CE9F2E2KC223RFDFDFOJE

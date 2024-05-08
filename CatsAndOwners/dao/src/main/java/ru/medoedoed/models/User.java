@@ -24,7 +24,7 @@ public class User implements JpaEntity, UserDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(name = "Owner")
+  @PrimaryKeyJoinColumn
   @OneToOne
   private Owner owner;
 
