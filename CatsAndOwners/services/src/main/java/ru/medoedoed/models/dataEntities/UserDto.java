@@ -1,10 +1,10 @@
-package ru.medoedoed.models.DataEntities;
+package ru.medoedoed.models.dataEntities;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
-import ru.medoedoed.utils.UserRole;
+import ru.medoedoed.utils.*;
 
 @Data
 @Builder

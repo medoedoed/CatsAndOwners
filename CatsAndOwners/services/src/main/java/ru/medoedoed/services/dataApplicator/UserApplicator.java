@@ -5,8 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.medoedoed.dao.OwnerDao;
-import ru.medoedoed.models.DataEntities.UserDto;
 import ru.medoedoed.models.User;
+import ru.medoedoed.models.dataEntities.UserDto;
 
 @Component
 @RequiredArgsConstructor
@@ -28,6 +28,8 @@ public class UserApplicator implements DataApplicator<UserDto, User> {
                   () ->
                       new EntityNotFoundException(
                           "Owner with id " + data.getOwnerId() + " not found")));
+    } else {
+      user.setOwner(null);
     }
 
     return user;
@@ -35,12 +37,14 @@ public class UserApplicator implements DataApplicator<UserDto, User> {
 
   @Override
   public UserDto JpaToData(User jpa) {
+    Long ownerId = null;
+    if (jpa.getOwner() != null) ownerId = jpa.getOwner().getId();
     return UserDto.builder()
         .id(jpa.getId())
         .username(jpa.getUsername())
         .password(jpa.getPassword())
         .role(jpa.getRole())
-        .ownerId(jpa.getOwner().getId())
+        .ownerId(ownerId)
         .build();
   }
 }

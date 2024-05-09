@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.DataEntities.OwnerDto;
-import ru.medoedoed.services.concreteServices.OwnerService;
+import ru.medoedoed.models.dataEntities.OwnerDto;
+import ru.medoedoed.services.concreteCrudServices.OwnerService;
 
 @RestController
 @RequiredArgsConstructor

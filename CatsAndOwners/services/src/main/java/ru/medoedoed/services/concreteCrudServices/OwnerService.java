@@ -1,9 +1,9 @@
-package ru.medoedoed.services.concreteServices;
+package ru.medoedoed.services.concreteCrudServices;
 
 import org.springframework.stereotype.Service;
 import ru.medoedoed.dao.OwnerDao;
 import ru.medoedoed.models.Owner;
-import ru.medoedoed.models.DataEntities.OwnerDto;
+import ru.medoedoed.models.dataEntities.OwnerDto;
 import ru.medoedoed.services.ServiceImpl;
 import ru.medoedoed.services.dataApplicator.OwnerApplicator;
 

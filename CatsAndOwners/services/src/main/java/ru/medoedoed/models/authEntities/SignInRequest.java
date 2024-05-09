@@ -1,4 +1,4 @@
-package ru.medoedoed.models.AuthEntities;
+package ru.medoedoed.models.authEntities;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

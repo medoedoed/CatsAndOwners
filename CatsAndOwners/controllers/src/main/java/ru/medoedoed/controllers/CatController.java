@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.DataEntities.CatDto;
-import ru.medoedoed.services.concreteServices.CatService;
+import ru.medoedoed.models.dataEntities.CatDto;
+import ru.medoedoed.services.concreteCrudServices.CatService;
 
 import java.util.List;
 

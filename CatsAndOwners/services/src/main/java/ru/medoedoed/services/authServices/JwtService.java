@@ -1,4 +1,4 @@
-package ru.medoedoed.services.AuthServices;
+package ru.medoedoed.services.authServices;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -45,7 +45,10 @@ public class JwtService {
   }
 
   private Claims extractAllClaims(String token) {
-    return Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(token).getPayload();
+    return Jwts.parser().
+            verifyWith(getSigningKey()).
+            build().
+            parseSignedClaims(token).getPayload();
   }
 
   private SecretKey getSigningKey() {

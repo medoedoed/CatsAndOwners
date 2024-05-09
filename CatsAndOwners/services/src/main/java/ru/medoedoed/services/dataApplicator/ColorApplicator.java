@@ -3,7 +3,7 @@ package ru.medoedoed.services.dataApplicator;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 import ru.medoedoed.models.CatColor;
-import ru.medoedoed.models.DataEntities.CatColorDto;
+import ru.medoedoed.models.dataEntities.CatColorDto;
 
 @Component
 public class ColorApplicator implements DataApplicator<CatColorDto, CatColor> {

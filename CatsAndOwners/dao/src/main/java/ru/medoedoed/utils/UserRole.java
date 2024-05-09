@@ -1,6 +1,6 @@
 package ru.medoedoed.utils;
 
 public enum UserRole {
-  admin,
-  user,
+  ADMIN,
+  USER,
 }

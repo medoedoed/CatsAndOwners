@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     implementation(project(":services"))
+    implementation(project(":dao"))
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
@@ -27,7 +28,11 @@ dependencies {
 
     implementation("org.postgresql:postgresql:42.7.3")
 
+    implementation("io.swagger.core.v3:swagger-annotations:2.2.21")
+    implementation("org.springdoc:springdoc-openapi-ui:1.7.0")
+
     implementation("org.springframework.boot:spring-boot-starter-security:3.2.4")
+
 }
 
 tasks.test {
