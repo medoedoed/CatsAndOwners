@@ -1,14 +1,13 @@
 package ru.medoedoed.controllers;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataEntities.CatDto;
 import ru.medoedoed.services.concreteCrudServices.CatService;
 import ru.medoedoed.utils.AccessProvider;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,6 +26,7 @@ public class CatController {
 
   @GetMapping()
   public List<CatDto> getAll() {
+    accessProvider.checkAdmin();
     return catService.getAll();
   }
 

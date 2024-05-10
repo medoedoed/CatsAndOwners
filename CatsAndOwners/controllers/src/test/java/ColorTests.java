@@ -39,7 +39,7 @@ public class ColorTests {
           SignUpRequest.builder().username(username).password(password).build());
     } else {
       authenticationService.signUp(
-          SignUpRequest.builder().username(username).password(password).build());
+          SignUpRequest.builder().username(username).password(password).ownerId(ownerId).build());
     }
 
     var result =
@@ -68,20 +68,6 @@ public class ColorTests {
     }
     return token;
   }
-
-//  @Test
-//  public void addCatWithoutToken() throws Exception {
-//
-//    mockMvc.perform(post("/cats")
-//                    .contentType(MediaType.APPLICATION_JSON)
-//                    .content("{\"name\":\"cat1\"," +
-//                            "\"birthDate\":\"2007-01-01\"," +
-//                            "\"breed\":\"breed1\"," +
-//                            "\"colorId\":2," +
-//                            "\"ownerId\":1," +
-//                            "\"friendsId\":[]}"))
-//            .andExpect(status().isForbidden());
-//  }
 
   @Test
   void addColor1Test() throws Exception {
