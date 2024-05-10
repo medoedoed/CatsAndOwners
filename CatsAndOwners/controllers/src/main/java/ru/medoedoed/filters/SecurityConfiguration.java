@@ -31,12 +31,7 @@ public class SecurityConfiguration {
               return corsConfiguration;
             }))
             .authorizeHttpRequests(request -> request
-                    .requestMatchers("/**").permitAll()
-                    .requestMatchers("/auth/**").permitAll()
-                    .requestMatchers("/auth/sign-in").permitAll()
-                    .requestMatchers("/auth/sign-up").permitAll()
-                    .requestMatchers("/swagger-ui/**", "/swagger-resources/*", "/v3/api-docs/**").permitAll()
-                    .anyRequest().authenticated())
+                    .requestMatchers("/**").permitAll())
             .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
     return http.build();

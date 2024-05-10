@@ -42,9 +42,8 @@ public class UserService extends ServiceImpl<User, UserDto> {
        .orElseThrow(() -> new IllegalArgumentException("User with username " + username + " not found")));
   }
 
-  @Deprecated
-  public void getAdmin() {
-    var user = getCurrentUser();
+  public void setAdmin(Long userId) {
+    var user = getById(userId);
     user.setRole(Role.ADMIN_ROLE);
     save(user);
   }

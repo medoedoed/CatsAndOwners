@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataEntities.OwnerDto;
 import ru.medoedoed.services.concreteCrudServices.OwnerService;
 import ru.medoedoed.services.concreteCrudServices.UserService;
+import ru.medoedoed.utils.AccessProvider;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,15 +15,22 @@ import ru.medoedoed.services.concreteCrudServices.UserService;
 public class UserController {
   private final UserService userService;
   private final OwnerService ownerService;
+  private final AccessProvider accessProvider;
 
-  @PostMapping("/set-owner")
-  public void setOwner(@Valid Long ownerId) {
-     userService.setOwner(ownerId);
+  @PostMapping("/set-owner/{id}")
+  public void setOwner(@Valid @PathVariable Long id) {
+     userService.setOwner(id);
   }
 
   @GetMapping("/owner")
   public Long getOwner() {
     return userService.getCurrentUser().getOwnerId();
+  }
+
+  @PostMapping("/set-admin/{id}")
+  public void setAdmin(@PathVariable Long id) {
+    accessProvider.checkAdmin();
+    userService.setAdmin(id);
   }
 
   @PutMapping("/owner")

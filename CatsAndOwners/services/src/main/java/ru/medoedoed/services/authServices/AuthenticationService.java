@@ -35,4 +35,15 @@ public class AuthenticationService {
     
     return null;
   }
+
+  public String sigUpAdmin(SignUpRequest request) {
+    var userData =
+            UserDto.builder()
+                    .username(request.getUsername())
+                    .password(passwordEncoder.encode(request.getPassword()))
+                    .role(Role.ADMIN_ROLE)
+                    .build();
+    Long userId = userService.save(userData);
+    return jwtService.generateToken(userId);
+  }
 }

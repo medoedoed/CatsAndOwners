@@ -2,9 +2,11 @@ package ru.medoedoed.models.authEntities;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class SignInRequest {
   @NotBlank
   @Size(min = 5, max = 15)
