@@ -8,12 +8,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataEntities.CatColorDto;
 import ru.medoedoed.services.concreteCrudServices.ColorService;
+import ru.medoedoed.utils.AccessProvider;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/colors")
 public class ColorController {
   private final ColorService colorService;
+  private final AccessProvider accessProvider;
 
   @GetMapping("/{id}")
   @Operation
@@ -30,18 +32,21 @@ public class ColorController {
   @PostMapping()
   @Operation
   public long newColor(@RequestBody @Valid @NonNull CatColorDto colorData) {
+    accessProvider.checkAdmin();
     return colorService.save(colorData);
   }
 
   @PutMapping
   @Operation
   public void updateColor(@Valid @NonNull @RequestBody CatColorDto colorData) {
+    accessProvider.checkAdmin();
     colorService.update(colorData);
   }
 
   @DeleteMapping("/{id}")
   @Operation
   public void deleteColor(@NonNull @PathVariable Long id) {
+    accessProvider.checkAdmin();
     colorService.delete(id);
   }
 }

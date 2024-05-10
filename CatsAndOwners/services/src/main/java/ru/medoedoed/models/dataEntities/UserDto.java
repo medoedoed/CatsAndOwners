@@ -21,5 +21,5 @@ public class UserDto {
   private String password;
 
   @NotBlank
-  private UserRole role;
+  private Role role;
 }

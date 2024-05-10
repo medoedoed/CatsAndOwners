@@ -7,7 +7,7 @@ import ru.medoedoed.models.authEntities.SignInRequest;
 import ru.medoedoed.models.authEntities.SignUpRequest;
 import ru.medoedoed.models.dataEntities.UserDto;
 import ru.medoedoed.services.concreteCrudServices.UserService;
-import ru.medoedoed.utils.UserRole;
+import ru.medoedoed.utils.Role;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +21,7 @@ public class AuthenticationService {
         UserDto.builder()
             .username(request.getUsername())
             .password(passwordEncoder.encode(request.getPassword()))
-            .role(UserRole.USER)
+            .role(Role.USER_ROLE)
             .build();
     Long userId = userService.save(userData);
     return jwtService.generateToken(userId);

@@ -8,7 +8,7 @@ import ru.medoedoed.models.User;
 import ru.medoedoed.models.dataEntities.UserDto;
 import ru.medoedoed.services.ServiceImpl;
 import ru.medoedoed.services.dataApplicator.DataApplicator;
-import ru.medoedoed.utils.UserRole;
+import ru.medoedoed.utils.Role;
 
 @Service
 public class UserService extends ServiceImpl<User, UserDto> {
@@ -45,7 +45,7 @@ public class UserService extends ServiceImpl<User, UserDto> {
   @Deprecated
   public void getAdmin() {
     var user = getCurrentUser();
-    user.setRole(UserRole.ADMIN);
+    user.setRole(Role.ADMIN_ROLE);
     save(user);
   }
 }

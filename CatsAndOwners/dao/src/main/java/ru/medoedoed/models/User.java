@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.medoedoed.utils.UserRole;
+import ru.medoedoed.utils.Role;
 
 @Entity
 @Setter
@@ -29,7 +29,7 @@ public class User implements JpaEntity {
 
   @Column(name = "Role")
   @Enumerated(EnumType.STRING)
-  private UserRole role;
+  private Role role;
 
   @Override
   public long getId() {
