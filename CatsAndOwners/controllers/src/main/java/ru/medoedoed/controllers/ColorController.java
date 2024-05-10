@@ -36,7 +36,7 @@ public class ColorController {
     return colorService.save(colorData);
   }
 
-  @PutMapping
+  @PutMapping()
   @Operation
   public void updateColor(@Valid @NonNull @RequestBody CatColorDto colorData) {
     accessProvider.checkAdmin();

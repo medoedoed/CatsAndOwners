@@ -1,11 +1,11 @@
-INSERT INTO owners (id, name,)
-VALUES (1, "owner1"),
-       (2, "owner2");
+INSERT INTO owners (ownerid, owner_name, owner_birth_date)
+VALUES (6, 'owner1', '1999-01-01'),
+       (7, 'owner2', '1999-02-01');
 
-INSERT INTO colors (id, name)
-VALUES (1, "white"),
-       (2, "black");
+INSERT INTO cat_colors (colorid, color_name)
+VALUES (6, 'white'),
+       (7, 'black');
 
-INSERT INTO cats (id, name, owner_id, color_id)
-VALUES (1, "cat1", 1, 2),
-       (1, "cat2", 2, 1);
+INSERT INTO cats (catid, cat_name, ownerid, color_colorid, cat_breed, cat_birth_date)
+VALUES (6, 'cat1', 6, 7, 'breed1', '2007-01-01'),
+       (7, 'cat2', 7, 6, 'breed2', '2007-02-01');

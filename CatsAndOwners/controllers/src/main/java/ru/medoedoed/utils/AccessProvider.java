@@ -9,7 +9,7 @@ import ru.medoedoed.models.dataEntities.UserDto;
 public class AccessProvider {
   private @NonNull Boolean isAdmin() {
     return SecurityContextHolder.getContext().getAuthentication().getAuthorities().stream()
-        .noneMatch(authority -> authority.getAuthority().equals("ADMIN_ROLE"));
+        .noneMatch(authority -> authority.getAuthority().equals("ADMIN"));
   }
 
   public void checkAccess(@NonNull Long userId) {
