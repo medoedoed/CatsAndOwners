@@ -18,20 +18,22 @@ public class CatController {
   private final AccessProvider accessProvider;
 
   @GetMapping("/{id}")
-  public CatDto getCat(@PathVariable @NonNull Long id) {
+  public CatDto getCat(@PathVariable Long id) {
     var catData = catService.getById(id);
+    if (catData == null) {
+      throw new IllegalArgumentException("Cat not found with id: " + id);
+    }
     accessProvider.checkAccess(catData.getOwnerId());
     return catData;
   }
 
-  @GetMapping()
+  @GetMapping("/all")
   public List<CatDto> getAll() {
-    accessProvider.checkAdmin();
     return catService.getAll();
   }
 
   @PostMapping
-  public Long newCat(@RequestBody @Valid @NonNull CatDto catData) {
+  public Long newCat(@RequestBody @Valid CatDto catData) {
     accessProvider.checkAccess(catData.getOwnerId());
     return catService.save(catData);
   }
@@ -44,8 +46,7 @@ public class CatController {
 
   @DeleteMapping("/{id}")
   public void deleteCat(@NonNull @PathVariable Long id) {
-    var ownerId = catService.getById(id).getOwnerId();
-    accessProvider.checkAccess(ownerId);
+    accessProvider.checkAccess(id);
     catService.delete(id);
   }
 }

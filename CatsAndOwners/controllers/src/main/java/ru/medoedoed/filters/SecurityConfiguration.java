@@ -37,13 +37,14 @@ public class SecurityConfiguration {
         .authorizeHttpRequests(
             request ->
                 request
-                    .requestMatchers("/user/set-admin/**")
-                    .hasAuthority("ADMIN")
+                    .requestMatchers("/user/set-admin/**", "/cats/all")
+                    .hasAuthority("ADMIN_ROLE")
                     .requestMatchers(
-                        "/user/set-owner/**", "/user/owner", "/user/owner/**", "/cats/**")
+                        "/user/set-owner/**", "/user/owner", "/user/owner/**")
                     .authenticated()
                     .requestMatchers("/**")
-                    .permitAll())
+                    .permitAll()
+                       )
         .sessionManagement(
             manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

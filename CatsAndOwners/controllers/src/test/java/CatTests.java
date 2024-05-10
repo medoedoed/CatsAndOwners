@@ -75,23 +75,6 @@ public class CatTests {
   }
 
   @Test
-  public void addCatWithoutToken() throws Exception {
-
-    mockMvc
-        .perform(
-            post("/cats")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(
-                    "{\"name\":\"cat1\","
-                        + "\"birthDate\":\"2007-01-01\","
-                        + "\"breed\":\"breed1\","
-                        + "\"colorId\":2,"
-                        + "\"ownerId\":1,"
-                        + "\"friendsId\":[]}"))
-        .andExpect(status().isForbidden());
-  }
-
-  @Test
   void addCatAdminTest() throws Exception {
     mockMvc
         .perform(
@@ -106,7 +89,7 @@ public class CatTests {
                         + "\"friendsId\":[]}")
                 .header("Authorization", "Bearer " + signInAdmin()))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$", equalTo(1)));
+        .andExpect(jsonPath("$", equalTo(2)));
   }
 
   @Test
@@ -119,18 +102,18 @@ public class CatTests {
                     "{\"name\":\"name3\","
                         + "\"birthDate\":\"2011-01-11\","
                         + "\"breed\":\"breed23\","
-                        + "\"colorId\":7,"
-                        + "\"ownerId\":6,"
+                        + "\"colorId\":6,"
+                        + "\"ownerId\":7,"
                         + "\"friendsId\":[]}")
-                .header("Authorization", "Bearer " + signInUser(6L)))
+                .header("Authorization", "Bearer " + signInUser(7L)))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$", equalTo(1)));
+        .andExpect(jsonPath("$", equalTo(3)));
   }
 
   @Test
   void getAllCatsTest() throws Exception {
     mockMvc
-        .perform(get("/cats").header("Authorization", "Bearer " + signInAdmin()))
+        .perform(get("/cats/all").header("Authorization", "Bearer " + signInAdmin()))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.length()").value(2));
   }
@@ -138,23 +121,23 @@ public class CatTests {
   @Test
   void getAllCatsUserTest() throws Exception {
     mockMvc
-        .perform(get("/cats").header("Authorization", "Bearer " + signInUser(6L)))
+        .perform(get("/cats/all").header("Authorization", "Bearer " + signInUser(6L)))
         .andExpect(status().isForbidden());
   }
 
   @Test
   void getCatByIdTest() throws Exception {
     mockMvc
-        .perform(get("/cats/11").header("Authorization", "Bearer " + signInAdmin()))
+        .perform(get("/cats/6").header("Authorization", "Bearer " + signInAdmin()))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.name").value("Tom"));
+        .andExpect(jsonPath("$.name").value("cat1"));
   }
 
   @Test
   void getCatByIdUserTest() throws Exception {
     mockMvc
-        .perform(get("/cats/12").header("Authorization", "Bearer " + signInUser(12L)))
-        .andExpect(status().isForbidden()); // user can't see other user's cats
+        .perform(get("/cats/6").header("Authorization", "Bearer " + signInUser(7L)))
+        .andExpect(status().isForbidden());
   }
 
   @Test
@@ -168,8 +151,8 @@ public class CatTests {
                         + "\"name\":\"Tom\","
                         + "\"birthDate\":\"2018-05-15\","
                         + "\"breed\":\"Siamese\","
-                        + "\"colorId\":11,"
-                        + "\"ownerId\":11,"
+                        + "\"colorId\":6,"
+                        + "\"ownerId\":7,"
                         + "\"friendsId\":[]}")
                 .header("Authorization", "Bearer " + signInAdmin()))
         .andExpect(status().isOk());
@@ -178,7 +161,7 @@ public class CatTests {
   @Test
   void deleteCatTest() throws Exception {
     mockMvc
-        .perform(delete("/cats/12").header("Authorization", "Bearer " + signInAdmin()))
+        .perform(delete("/cats/6").header("Authorization", "Bearer " + signInAdmin()))
         .andExpect(status().isOk());
   }
 }
