@@ -22,6 +22,7 @@ public class AuthenticationService {
             .username(request.getUsername())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(Role.USER_ROLE)
+            .ownerId(request.getOwnerId())
             .build();
     Long userId = userService.save(userData);
     return jwtService.generateToken(userId);
@@ -36,7 +37,7 @@ public class AuthenticationService {
     return null;
   }
 
-  public String sigUpAdmin(SignUpRequest request) {
+  public String signUpAdmin(SignUpRequest request) {
     var userData =
             UserDto.builder()
                     .username(request.getUsername())

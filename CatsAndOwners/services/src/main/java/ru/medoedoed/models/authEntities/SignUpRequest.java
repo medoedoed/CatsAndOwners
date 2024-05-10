@@ -1,5 +1,6 @@
 package ru.medoedoed.models.authEntities;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
@@ -15,4 +16,7 @@ public class SignUpRequest {
   @NotBlank
   @Size(min = 6, max = 24)
   private String password;
+
+  @Nullable
+  private Long ownerId;
 }

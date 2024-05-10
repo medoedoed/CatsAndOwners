@@ -1,7 +1,7 @@
 package ru.medoedoed.models.dataEntities;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import ru.medoedoed.utils.*;
@@ -14,7 +14,7 @@ public class UserDto {
   @NotBlank(message = "Name field shouldn't be blank")
   private String username;
 
-  @NotNull
+  @Nullable
   private Long ownerId;
 
   @NotBlank

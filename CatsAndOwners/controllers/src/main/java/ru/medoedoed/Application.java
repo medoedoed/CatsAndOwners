@@ -10,7 +10,7 @@ public class Application {
   public static void main(String[] args) {
     var application = SpringApplication.run(Application.class, args);
     var authenticationService = application.getBean(AuthenticationService.class);
-    authenticationService.sigUpAdmin(
+    authenticationService.signUpAdmin(
         SignUpRequest.builder().username("admin").password("admin1").build());
   }
 }
