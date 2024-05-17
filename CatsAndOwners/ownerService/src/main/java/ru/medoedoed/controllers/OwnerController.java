@@ -4,26 +4,24 @@ import jakarta.validation.Valid;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.dataEntities.OwnerDto;
-import ru.medoedoed.services.concreteCrudServices.OwnerService;
-import ru.medoedoed.utils.AccessProvider;
+import ru.medoedoed.models.dataModels.OwnerDto;
+import ru.medoedoed.services.OwnerService;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/owners")
 public class OwnerController {
   private final OwnerService ownerService;
-  private final AccessProvider accessProvider;
 
   @GetMapping("/{id}")
   public OwnerDto getOwner(@PathVariable @NonNull Long id) {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin(); TODO
     return ownerService.getById(id);
   }
 
   @GetMapping()
   public Iterable<OwnerDto> getAll() {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin(); TODO
     return ownerService.getAll();
   }
 
@@ -34,13 +32,13 @@ public class OwnerController {
 
   @PutMapping
   public void updateOwner(@Valid @NonNull @RequestBody OwnerDto ownerData) {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin(); TODO
     ownerService.update(ownerData);
   }
 
   @DeleteMapping("/{id}")
   public void deleteOwner(@NonNull @PathVariable Long id) {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin(); TODO
     ownerService.delete(id);
   }
 }

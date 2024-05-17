@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.medoedoed.utils.Role;
+import ru.medoedoed.role.Role;
 
 @Entity
 @Setter
@@ -19,7 +19,7 @@ public class UserJpa implements JpaEntity {
   private Long id;
 
   @OneToOne
-  private OwnerJpa ownerJpa;
+  private OwnerJpa owner;
 
   @Column(name = "Username", unique = true)
   private String username;

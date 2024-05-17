@@ -27,7 +27,7 @@ public class OwnerJpa implements JpaEntity {
   @Setter
   @Column(name = "Cats")
   @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<CatJpa> catJpas;
+  private List<CatJpa> cats;
 
   @Override
   public long getId() {

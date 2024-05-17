@@ -1,21 +1,21 @@
 package ru.medoedoed.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import ru.medoedoed.crudService.DataApplicator;
+import ru.medoedoed.crudService.ServiceImpl;
 import ru.medoedoed.dao.UserDao;
-import ru.medoedoed.models.User;
-import ru.medoedoed.models.dataEntities.UserDto;
-import ru.medoedoed.services.dataApplicator.DataApplicator;
-import ru.medoedoed.utils.Role;
+import ru.medoedoed.jpaEntity.UserJpa;
+import ru.medoedoed.models.dataModels.UserDto;
+import ru.medoedoed.role.Role;
 
 @Service
-public class UserService extends ServiceImpl<User, UserDto> {
+public class UserService extends ServiceImpl<UserJpa, UserDto> {
   private final UserDao userDao;
 
   public UserService(
-      JpaRepository<User, Long> jpaRepository,
-      DataApplicator<UserDto, User> applicator) {
+      JpaRepository<UserJpa, Long> jpaRepository,
+      DataApplicator<UserDto, UserJpa> applicator) {
     super(jpaRepository, applicator);
     this.userDao = (UserDao) jpaRepository;
   }
@@ -31,9 +31,11 @@ public class UserService extends ServiceImpl<User, UserDto> {
   }
 
   public UserDto getCurrentUser() {
-    var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    var username = ((UserDto) principal).getUsername();
-    return getByUsername(username);
+    //TODO
+//    var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//    var username = ((UserDto) principal).getUsername();
+//    return getByUsername(username);
+    return null;
   }
 
   public UserDto getByUsername(String username) {

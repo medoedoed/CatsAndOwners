@@ -3,10 +3,8 @@ package ru.medoedoed.controllers;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.dataEntities.OwnerDto;
-import ru.medoedoed.services.concreteCrudServices.OwnerService;
-import ru.medoedoed.services.concreteCrudServices.UserService;
-import ru.medoedoed.utils.AccessProvider;
+import ru.medoedoed.models.dataModels.OwnerDto;
+import ru.medoedoed.services.UserService;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,8 +12,6 @@ import ru.medoedoed.utils.AccessProvider;
 @Valid
 public class UserController {
   private final UserService userService;
-  private final OwnerService ownerService;
-  private final AccessProvider accessProvider;
 
   @PostMapping("/set-owner/{id}")
   public void setOwner(@Valid @PathVariable Long id) {
@@ -29,19 +25,18 @@ public class UserController {
 
   @PostMapping("/set-admin/{id}")
   public void setAdmin(@PathVariable Long id) {
-    accessProvider.checkAdmin();
     userService.setAdmin(id);
   }
 
   @PutMapping("/owner")
   public void updateOwner(@Valid @RequestBody OwnerDto ownerData) {
     ownerData.setId(userService.getCurrentUser().getOwnerId());
-    ownerService.save(ownerData);
+//    ownerService.save(ownerData); TODO
   }
 
   @DeleteMapping("/owner/{ownerId}")
   public void deleteOwner(@Valid @PathVariable Long ownerId) {
-    ownerService.delete(ownerId);
+//    ownerService.delete(ownerId); TODO
   }
 }
 

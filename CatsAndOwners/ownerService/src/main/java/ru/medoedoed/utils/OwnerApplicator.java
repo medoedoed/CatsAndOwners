@@ -2,37 +2,39 @@ package ru.medoedoed.utils;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import ru.medoedoed.dao.CatDao;
-import ru.medoedoed.models.Cat;
-import ru.medoedoed.models.Owner;
-import ru.medoedoed.models.dataEntities.OwnerDto;
+import ru.medoedoed.crudService.DataApplicator;
+import ru.medoedoed.jpaEntity.CatJpa;
+import ru.medoedoed.jpaEntity.OwnerJpa;
+import ru.medoedoed.models.dataModels.OwnerDto;
+
+import java.util.ArrayList;
 
 @Component
 @RequiredArgsConstructor
-public class OwnerApplicator implements DataApplicator<OwnerDto, Owner> {
-  private final CatDao catDao;
+public class OwnerApplicator implements DataApplicator<OwnerDto, OwnerJpa> {
+  private final RabbitTemplate rabbitTemplate;
 
   @Override
-  public Owner DataToJpa(@NotNull OwnerDto data) {
-    var owner = new Owner();
+  public OwnerJpa DataToJpa(@NotNull OwnerDto data) {
+    var owner = new OwnerJpa();
     owner.setId(data.getId());
     owner.setName(data.getName());
     owner.setBirthDate(data.getBirthDate());
-    if (owner.getCats() != null) {
-      owner.setCats(
-          data.getCatsId().stream().map(catId -> catDao.findById(catId).orElseThrow()).toList());
+    if (data.getCatsId() != null) {
+      owner.setCats((ArrayList<CatJpa>) rabbitTemplate.convertSendAndReceive("cats.request", data.getCatsId()));
     }
     return owner;
   }
 
   @Override
-  public OwnerDto JpaToData(@NotNull Owner jpa) {
+  public OwnerDto JpaToData(@NotNull OwnerJpa jpa) {
     return OwnerDto.builder()
         .id(jpa.getId())
         .name(jpa.getName())
         .birthDate(jpa.getBirthDate())
-        .catsId(jpa.getCats().stream().map(Cat::getId).toList())
+        .catsId(jpa.getCats().stream().map(CatJpa::getId).toList())
         .build();
   }
 }
