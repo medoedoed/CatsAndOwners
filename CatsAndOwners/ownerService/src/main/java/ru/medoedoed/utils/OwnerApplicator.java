@@ -22,6 +22,7 @@ public class OwnerApplicator implements DataApplicator<OwnerDto, OwnerJpa> {
     owner.setId(data.getId());
     owner.setName(data.getName());
     owner.setBirthDate(data.getBirthDate());
+    //TODO
     if (data.getCatsId() != null) {
       owner.setCats((ArrayList<CatJpa>) rabbitTemplate.convertSendAndReceive("cats.request", data.getCatsId()));
     }

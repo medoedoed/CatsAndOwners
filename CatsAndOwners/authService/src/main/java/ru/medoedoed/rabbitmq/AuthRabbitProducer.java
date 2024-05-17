@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class RabbitMqService {
-  private final RabbitMqConsumer rabbitMqConsumer;
+public class AuthRabbitProducer {
+  private final AuthRabbitConsumer authRabbitConsumer;
 
   public void processMessage(String message) {
   }

@@ -7,7 +7,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataModels.CatDto;
-import ru.medoedoed.rabbitmq.RabbitMqProducer;
+import ru.medoedoed.rabbitmq.CatRabbitProducer;
 import ru.medoedoed.services.CatService;
 
 @RestController
@@ -16,7 +16,7 @@ import ru.medoedoed.services.CatService;
 @Valid
 public class CatController {
   private final CatService catService;
-  private final RabbitMqProducer producer;
+  private final CatRabbitProducer producer;
 
   @GetMapping("/{id}")
   public CatDto getCat(@PathVariable Long id) {

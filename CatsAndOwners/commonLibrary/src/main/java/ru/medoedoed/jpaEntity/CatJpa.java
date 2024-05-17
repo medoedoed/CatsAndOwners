@@ -32,7 +32,7 @@ public class CatJpa implements JpaEntity {
 
   @ManyToOne
   @JoinColumn(name = "OwnerID")
-  private OwnerJpa ownerJpa;
+  private OwnerJpa owner;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(

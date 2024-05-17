@@ -7,7 +7,7 @@ import ru.medoedoed.services.UserService;
 
 @Component
 @RequiredArgsConstructor
-public class RabbitMqConsumer {
+public class AuthRabbitConsumer {
   private final UserService userService;
 
   @RabbitListener(queues = "user.requestCurrentUser")
