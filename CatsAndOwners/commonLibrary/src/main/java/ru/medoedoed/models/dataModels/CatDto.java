@@ -23,8 +23,7 @@ public class CatDto {
 
   @NotNull
   private Long colorId;
-
-  @NotNull
+  
   private Long ownerId;
 
   private List<Long> friendsId;

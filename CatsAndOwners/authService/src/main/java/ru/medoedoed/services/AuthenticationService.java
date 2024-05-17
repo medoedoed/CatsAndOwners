@@ -25,7 +25,6 @@ public class AuthenticationService {
             .role(Role.USER_ROLE)
             .ownerId(request.getOwnerId())
             .build();
-    //TODO
     Long userId = userService.save(userData);
     return jwtService.generateToken(userId);
   }

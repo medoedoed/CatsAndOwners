@@ -1,13 +1,17 @@
 package ru.medoedoed.rabbitmq;
 
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
+import ru.medoedoed.services.UserService;
 
 @Component
+@RequiredArgsConstructor
 public class RabbitMqConsumer {
-  @RabbitListener(queues = "queue")
-  public void receiveMessage(String message) {
-    // Обработка полученного сообщения
+  private final UserService userService;
+
+  @RabbitListener(queues = "user.requestCurrentUser")
+  public Long sendCurrentUser() {
+    return userService.getCurrentUser().getId();
   }
 }
