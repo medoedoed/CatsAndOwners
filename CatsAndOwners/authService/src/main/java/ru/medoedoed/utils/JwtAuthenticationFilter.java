@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +25,7 @@ import ru.medoedoed.services.JwtService;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private final JwtService jwtService;
-  private final UserService userService;
+  private final RabbitTemplate rabbitTemplate;
 
   @Override
   protected void doFilterInternal(
@@ -49,13 +50,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       return;
     }
 
-    UserDto user;
-    try {
-      user = userService.getById(id);
-    } catch (Exception e) {
-      filterChain.doFilter(request, response);
-      return;
-    }
+    UserDto user = (UserDto) rabbitTemplate.convertSendAndReceive("user.request", id);
 
     if (user == null) {
       filterChain.doFilter(request, response);
@@ -68,7 +63,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
     context.setAuthentication(authentication);
     SecurityContextHolder.setContext(context);
-
 
     filterChain.doFilter(request, response);
   }

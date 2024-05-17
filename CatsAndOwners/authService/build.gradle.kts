@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("org.springframework.boot") version "3.2.5"
     id("io.spring.dependency-management") version "1.1.4"
+    id("io.freefair.lombok") version "8.6"
 }
 
 group = "ru.medoedoed"
@@ -18,11 +19,6 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     implementation("io.swagger.core.v3:swagger-annotations:2.2.21")
-
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
-    testCompileOnly("org.projectlombok:lombok:1.18.30")
-    testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")

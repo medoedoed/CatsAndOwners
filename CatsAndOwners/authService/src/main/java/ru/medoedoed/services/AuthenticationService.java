@@ -1,18 +1,20 @@
 package ru.medoedoed.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.medoedoed.authModels.SignInRequest;
 import ru.medoedoed.authModels.SignUpRequest;
 import ru.medoedoed.dataModels.UserDto;
+import ru.medoedoed.rabbitMQ.RabbitMqProducer;
 import ru.medoedoed.role.Role;
 
 
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-  private final UserService userService;
+  private final RabbitTemplate rabbitTemplate;
   private final JwtService jwtService;
   private final PasswordEncoder passwordEncoder;
 
@@ -24,9 +26,8 @@ public class AuthenticationService {
             .role(Role.USER_ROLE)
             .ownerId(request.getOwnerId())
             .build();
-    Long userId = userService.save(userData);
+    Long userId = (Long) rabbitTemplate.convertSendAndReceive("user.register", userData);
     return jwtService.generateToken(userId);
-            .ownerId(request.getOwnerId());
   }
 
   public String signIn(SignInRequest request) {
