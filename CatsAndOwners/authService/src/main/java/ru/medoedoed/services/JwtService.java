@@ -1,4 +1,4 @@
-package ru.medoedoed.services.authServices;
+package ru.medoedoed.services;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

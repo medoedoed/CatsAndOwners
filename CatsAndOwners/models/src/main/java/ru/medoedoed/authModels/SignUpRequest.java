@@ -1,4 +1,4 @@
-package ru.medoedoed.models.authEntities;
+package ru.medoedoed.authModels;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;

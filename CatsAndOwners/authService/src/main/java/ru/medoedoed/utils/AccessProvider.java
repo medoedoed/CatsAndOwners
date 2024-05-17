@@ -4,7 +4,7 @@ import lombok.NonNull;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import ru.medoedoed.models.dataEntities.UserDto;
+import ru.medoedoed.dataModels.UserDto;
 
 import java.util.Objects;
 

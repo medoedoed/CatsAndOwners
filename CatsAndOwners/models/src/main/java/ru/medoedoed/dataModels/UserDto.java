@@ -1,10 +1,10 @@
-package ru.medoedoed.models.dataEntities;
+package ru.medoedoed.dataModels;
 
-import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
-import ru.medoedoed.utils.*;
+import org.springframework.lang.Nullable;
+import ru.medoedoed.role.Role;
 
 @Data
 @Builder

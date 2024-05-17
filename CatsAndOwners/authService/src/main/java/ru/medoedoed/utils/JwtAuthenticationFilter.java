@@ -1,4 +1,4 @@
-package ru.medoedoed.filters;
+package ru.medoedoed.utils;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -17,9 +17,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import ru.medoedoed.models.dataEntities.UserDto;
-import ru.medoedoed.services.authServices.JwtService;
-import ru.medoedoed.services.concreteCrudServices.UserService;
+import ru.medoedoed.dataModels.UserDto;
+import ru.medoedoed.services.JwtService;
 
 @Component
 @RequiredArgsConstructor

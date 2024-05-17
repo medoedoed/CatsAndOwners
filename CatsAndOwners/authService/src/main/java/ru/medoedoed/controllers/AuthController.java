@@ -1,13 +1,13 @@
-package ru.medoedoed.authControllers;
+package ru.medoedoed.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.authEntities.SignInRequest;
-import ru.medoedoed.models.authEntities.SignUpRequest;
-import ru.medoedoed.services.authServices.AuthenticationService;
+import ru.medoedoed.authModels.SignInRequest;
+import ru.medoedoed.authModels.SignUpRequest;
+import ru.medoedoed.services.AuthenticationService;
 
 @RestController
 @RequestMapping("/auth")

@@ -1,4 +1,4 @@
-package ru.medoedoed.utils;
+package ru.medoedoed.role;
 
 public enum Role {
   ADMIN_ROLE,

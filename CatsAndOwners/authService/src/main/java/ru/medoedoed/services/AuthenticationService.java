@@ -1,13 +1,13 @@
-package ru.medoedoed.services.authServices;
+package ru.medoedoed.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.medoedoed.models.authEntities.SignInRequest;
-import ru.medoedoed.models.authEntities.SignUpRequest;
-import ru.medoedoed.models.dataEntities.UserDto;
-import ru.medoedoed.services.concreteCrudServices.UserService;
-import ru.medoedoed.utils.Role;
+import ru.medoedoed.authModels.SignInRequest;
+import ru.medoedoed.authModels.SignUpRequest;
+import ru.medoedoed.dataModels.UserDto;
+import ru.medoedoed.role.Role;
+
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +26,7 @@ public class AuthenticationService {
             .build();
     Long userId = userService.save(userData);
     return jwtService.generateToken(userId);
+            .ownerId(request.getOwnerId());
   }
 
   public String signIn(SignInRequest request) {
