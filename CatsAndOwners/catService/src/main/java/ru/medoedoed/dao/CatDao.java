@@ -2,7 +2,7 @@ package ru.medoedoed.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.medoedoed.models.Cat;
+import ru.medoedoed.jpaEntity.CatJpa;
 
 @Repository
-public interface CatDao extends JpaRepository<Cat, Long> {}
+public interface CatDao extends JpaRepository<CatJpa, Long> {}

@@ -1,4 +1,4 @@
-package ru.medoedoed.models;
+package ru.medoedoed.jpaEntity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "CatColors")
 @NoArgsConstructor
-public class CatColor implements JpaEntity  {
+public class CatColorJpa implements JpaEntity  {
   @Id
   @Column(name = "ColorID")
   @GeneratedValue(strategy = GenerationType.IDENTITY)

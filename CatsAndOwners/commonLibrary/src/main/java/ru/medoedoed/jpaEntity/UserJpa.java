@@ -1,4 +1,4 @@
-package ru.medoedoed.models;
+package ru.medoedoed.jpaEntity;
 
 
 import jakarta.persistence.*;
@@ -12,14 +12,14 @@ import ru.medoedoed.utils.Role;
 @Getter
 @Table(name = "Users")
 @NoArgsConstructor
-public class User implements JpaEntity {
+public class UserJpa implements JpaEntity {
   @Id
   @Column(name = "UserId")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @OneToOne
-  private Owner owner;
+  private OwnerJpa ownerJpa;
 
   @Column(name = "Username", unique = true)
   private String username;

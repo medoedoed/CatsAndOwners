@@ -30,7 +30,7 @@ public class AuthenticationService {
   }
 
   public String signIn(SignInRequest request) {
-    var user = userService.getByUsername(request.getUsername());
+    UserDto user = userService.getByUsername(request.getUsername());
     if (user != null && passwordEncoder.matches(request.getPassword(), user.getPassword())) {
       return jwtService.generateToken(user.getId());
     }

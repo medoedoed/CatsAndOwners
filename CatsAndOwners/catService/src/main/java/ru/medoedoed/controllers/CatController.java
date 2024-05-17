@@ -4,10 +4,10 @@ import jakarta.validation.Valid;
 import java.util.List;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
-import ru.medoedoed.models.dataEntities.CatDto;
-import ru.medoedoed.services.concreteCrudServices.CatService;
-import ru.medoedoed.utils.AccessProvider;
+import ru.medoedoed.models.dataModels.CatDto;
+import ru.medoedoed.services.CatService;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,15 +15,15 @@ import ru.medoedoed.utils.AccessProvider;
 @Valid
 public class CatController {
   private final CatService catService;
-  private final AccessProvider accessProvider;
+  private final RabbitTemplate rabbitTemplate;
 
+  // TODO добавить проверку владельца
   @GetMapping("/{id}")
   public CatDto getCat(@PathVariable Long id) {
     var catData = catService.getById(id);
     if (catData == null) {
       throw new IllegalArgumentException("Cat not found with id: " + id);
     }
-    accessProvider.checkAccess(catData.getOwnerId());
     return catData;
   }
 
@@ -34,19 +34,16 @@ public class CatController {
 
   @PostMapping
   public Long newCat(@RequestBody @Valid CatDto catData) {
-    accessProvider.checkAccess(catData.getOwnerId());
     return catService.save(catData);
   }
 
   @PutMapping
   public void updateCat(@Valid @NonNull @RequestBody CatDto catData) {
-    accessProvider.checkAccess(catData.getOwnerId());
     catService.update(catData);
   }
 
   @DeleteMapping("/{id}")
   public void deleteCat(@NonNull @PathVariable Long id) {
-    accessProvider.checkAccess(id);
     catService.delete(id);
   }
 }

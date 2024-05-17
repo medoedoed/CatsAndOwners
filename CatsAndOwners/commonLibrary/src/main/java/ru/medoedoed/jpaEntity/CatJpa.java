@@ -1,4 +1,4 @@
-package ru.medoedoed.dao;
+package ru.medoedoed.jpaEntity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Table(name = "Cats")
 @NoArgsConstructor
-public class Cat implements JpaEntity {
+public class CatJpa implements JpaEntity {
   @Id
   @Column(name = "CatID")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +28,11 @@ public class Cat implements JpaEntity {
   private String breed;
 
   @ManyToOne
-  private CatColor color;
+  private CatColorJpa color;
 
   @ManyToOne
   @JoinColumn(name = "OwnerID")
-  private Owner owner;
+  private OwnerJpa ownerJpa;
 
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(
@@ -40,7 +40,7 @@ public class Cat implements JpaEntity {
       joinColumns = @JoinColumn(name = "FirstCatId"),
       inverseJoinColumns = @JoinColumn(name = "SecondCatId"))
   @Column(name = "Friends")
-  private List<Cat> friends;
+  private List<CatJpa> friends;
 
   @Override
   public long getId() {

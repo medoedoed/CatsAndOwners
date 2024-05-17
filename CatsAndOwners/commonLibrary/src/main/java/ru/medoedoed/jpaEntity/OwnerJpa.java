@@ -1,4 +1,4 @@
-package ru.medoedoed.models;
+package ru.medoedoed.jpaEntity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "Owners")
 @NoArgsConstructor
-public class Owner implements JpaEntity {
+public class OwnerJpa implements JpaEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "OwnerID")
@@ -27,7 +27,7 @@ public class Owner implements JpaEntity {
   @Setter
   @Column(name = "Cats")
   @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-  private List<Cat> cats;
+  private List<CatJpa> catJpas;
 
   @Override
   public long getId() {
