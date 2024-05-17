@@ -1,6 +1,7 @@
 package ru.medoedoed.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import ru.medoedoed.crudService.DataApplicator;
 import ru.medoedoed.crudService.ServiceImpl;
@@ -31,11 +32,9 @@ public class UserService extends ServiceImpl<UserJpa, UserDto> {
   }
 
   public UserDto getCurrentUser() {
-    //TODO
-//    var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//    var username = ((UserDto) principal).getUsername();
-//    return getByUsername(username);
-    return null;
+    var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    var username = ((UserDto) principal).getUsername();
+    return getByUsername(username);
   }
 
   public UserDto getByUsername(String username) {

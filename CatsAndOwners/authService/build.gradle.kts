@@ -24,6 +24,8 @@ dependencies {
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-security:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
 
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")

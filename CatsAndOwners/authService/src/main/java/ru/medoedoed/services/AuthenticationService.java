@@ -13,6 +13,7 @@ import ru.medoedoed.role.Role;
 @RequiredArgsConstructor
 public class AuthenticationService {
   private final RabbitTemplate rabbitTemplate;
+  private final UserService userService;
   private final JwtService jwtService;
   private final PasswordEncoder passwordEncoder;
 
@@ -25,7 +26,7 @@ public class AuthenticationService {
             .ownerId(request.getOwnerId())
             .build();
     //TODO
-    Long userId = (Long) rabbitTemplate.convertSendAndReceive("user.register", userData);
+    Long userId = userService.save(userData);
     return jwtService.generateToken(userId);
   }
 

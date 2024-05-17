@@ -3,6 +3,5 @@ include 'authService'
 include 'catService'
 include 'catColorService'
 include 'ownerService'
-include 'userService'
 include 'commonLibrary'
 
