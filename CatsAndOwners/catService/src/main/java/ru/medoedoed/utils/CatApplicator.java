@@ -1,4 +1,4 @@
-package ru.medoedoed.services.dataApplicator;
+package ru.medoedoed.utils;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.constraints.NotNull;

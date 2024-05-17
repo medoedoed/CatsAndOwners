@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import ru.medoedoed.dao.UserDao;
 import ru.medoedoed.models.User;
 import ru.medoedoed.models.dataEntities.UserDto;
-import ru.medoedoed.services.ServiceImpl;
 import ru.medoedoed.services.dataApplicator.DataApplicator;
 import ru.medoedoed.utils.Role;
 

@@ -1,4 +1,4 @@
-package ru.medoedoed.services.concreteCrudServices;
+package ru.medoedoed.services;
 
 import org.springframework.stereotype.Service;
 import ru.medoedoed.dao.CatDao;
