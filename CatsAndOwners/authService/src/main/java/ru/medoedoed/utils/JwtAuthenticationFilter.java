@@ -20,12 +20,14 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import ru.medoedoed.models.dataModels.UserDto;
 import ru.medoedoed.services.JwtService;
+import ru.medoedoed.services.UserService;
 
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private final JwtService jwtService;
   private final RabbitTemplate rabbitTemplate;
+  private final UserService userService;
 
   @Override
   protected void doFilterInternal(
@@ -50,7 +52,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       return;
     }
 
-    UserDto user = (UserDto) rabbitTemplate.convertSendAndReceive("user.request", id);
+    UserDto user;
+
+    try {
+      user = userService.getById(id);
+    } catch (Exception e) {
+      filterChain.doFilter(request, response);
+      return;
+    }
 
     if (user == null) {
       filterChain.doFilter(request, response);
