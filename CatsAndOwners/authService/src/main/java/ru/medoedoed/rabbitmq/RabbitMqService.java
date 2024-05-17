@@ -1,4 +1,4 @@
-package ru.medoedoed.rabbitMQ;
+package ru.medoedoed.rabbitmq;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

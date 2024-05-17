@@ -1,4 +1,4 @@
-package ru.medoedoed.rabbitMQ;
+package ru.medoedoed.rabbitmq;
 
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

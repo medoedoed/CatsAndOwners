@@ -1,4 +1,4 @@
-package ru.medoedoed.models;
+package ru.medoedoed.dao;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

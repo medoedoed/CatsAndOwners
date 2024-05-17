@@ -4,4 +4,6 @@ include 'dao'
 include 'controllers'
 include 'authService'
 include 'models'
+include 'catService'
+include 'commonLibrary'
 

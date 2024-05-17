@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.medoedoed.authModels.SignInRequest;
-import ru.medoedoed.authModels.SignUpRequest;
-import ru.medoedoed.dataModels.UserDto;
-import ru.medoedoed.rabbitMQ.RabbitMqProducer;
+import ru.medoedoed.models.authModels.*;
+import ru.medoedoed.models.dataModels.UserDto;
 import ru.medoedoed.role.Role;
 
 
@@ -26,6 +24,7 @@ public class AuthenticationService {
             .role(Role.USER_ROLE)
             .ownerId(request.getOwnerId())
             .build();
+    //TODO
     Long userId = (Long) rabbitTemplate.convertSendAndReceive("user.register", userData);
     return jwtService.generateToken(userId);
   }

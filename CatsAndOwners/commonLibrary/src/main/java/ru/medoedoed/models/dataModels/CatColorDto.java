@@ -1,4 +1,4 @@
-package ru.medoedoed.dataModels;
+package ru.medoedoed.models.dataModels;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;

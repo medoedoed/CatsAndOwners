@@ -1,4 +1,4 @@
-package ru.medoedoed.services.dataApplicator;
+package ru.medoedoed.crudService;
 
 import org.springframework.stereotype.Component;
 
