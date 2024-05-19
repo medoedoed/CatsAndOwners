@@ -1,5 +1,6 @@
 package ru.medoedoed.rabbitmq;
 
+import com.rabbitmq.client.Channel;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
