@@ -15,13 +15,13 @@ public class OwnerController {
 
   @GetMapping("/{id}")
   public OwnerDto getOwner(@PathVariable @NonNull Long id) {
-//    accessProvider.checkAdmin(); TODO
+//    accessProvider.checkAdmin();
     return ownerService.getById(id);
   }
 
   @GetMapping()
   public Iterable<OwnerDto> getAll() {
-//    accessProvider.checkAdmin(); TODO
+//    accessProvider.checkAdmin();
     return ownerService.getAll();
   }
 
@@ -32,13 +32,13 @@ public class OwnerController {
 
   @PutMapping
   public void updateOwner(@Valid @NonNull @RequestBody OwnerDto ownerData) {
-//    accessProvider.checkAdmin(); TODO
+//    accessProvider.checkAdmin();
     ownerService.update(ownerData);
   }
 
   @DeleteMapping("/{id}")
   public void deleteOwner(@NonNull @PathVariable Long id) {
-//    accessProvider.checkAdmin(); TODO
+//    accessProvider.checkAdmin();
     ownerService.delete(id);
   }
 }

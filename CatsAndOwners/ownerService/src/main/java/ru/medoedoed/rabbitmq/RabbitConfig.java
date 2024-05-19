@@ -1,5 +1,6 @@
 package ru.medoedoed.rabbitmq;
 
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -9,16 +10,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfig {
-  @Value("${rabbitmq.host}")
+  @Value("${spring.rabbitmq.host}")
   private String host;
 
-  @Value("${rabbitmq.port}")
+  @Value("${spring.rabbitmq.port}")
   private int port;
 
-  @Value("${rabbitmq.username}")
+  @Value("${spring.rabbitmq.username}")
   private String username;
 
-  @Value("${rabbitmq.password}")
+  @Value("${spring.rabbitmq.password}")
   private String password;
 
   @Bean

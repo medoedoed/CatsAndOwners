@@ -19,6 +19,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
 
     implementation("io.swagger.core.v3:swagger-annotations:2.2.21")
+    implementation("org.postgresql:postgresql")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")
@@ -30,9 +31,6 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.12.5")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.12.5")
-
-
-
 }
 
 tasks.test {

@@ -12,8 +12,6 @@ import ru.medoedoed.models.dataModels.UserDto;
 @Component
 @RequiredArgsConstructor
 public class UserApplicator implements DataApplicator<UserDto, UserJpa> {
-  private final RabbitTemplate rabbitTemplate;
-
   @Override
   public UserJpa DataToJpa(@NotNull UserDto data) {
     var user = new UserJpa();
@@ -23,7 +21,8 @@ public class UserApplicator implements DataApplicator<UserDto, UserJpa> {
     user.setId(data.getId());
     if (data.getOwnerId() != null) {
       user.setOwner(
-          (OwnerJpa) rabbitTemplate.convertSendAndReceive("owner.request", data.getOwnerId()));
+              new OwnerJpa());
+//          (OwnerJpa) rabbitTemplate.convertSendAndReceive("owner.request", data.getOwnerId())); TODO
     } else {
       user.setOwner(null);
     }
