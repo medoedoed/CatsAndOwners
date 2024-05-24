@@ -7,52 +7,52 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataModels.CatDto;
-import ru.medoedoed.rabbitmq.CatRabbitProducer;
-import ru.medoedoed.services.CatService;
+import ru.medoedoed.rabbitmq.ExternalRabbitProducer;
+import ru.medoedoed.services.UserService;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/cats")
 @Valid
 public class CatController {
-  private final CatService catService;
-  private final CatRabbitProducer producer;
+  private final ExternalRabbitProducer producer;
+  private final UserService userService;
 
   @GetMapping("/{id}")
   public CatDto getCat(@PathVariable Long id) {
     checkCatById(id);
-    return catService.getById(id);
+    return producer.getCatById(id);
   }
 
   @GetMapping("/all")
   public List<CatDto> getAll() {
-    Long currentUserId = producer.getCurrentUser();
-    var cats = catService.getAll();
+    Long currentUserId = userService.getCurrentUser().getId();
+    var cats = producer.getAllCats();
     cats.removeIf(cat -> !Objects.equals(cat.getOwnerId(), currentUserId));
     return cats;
   }
 
   @PostMapping
   public Long newCat(@RequestBody @Valid CatDto catData) {
-    catData.setOwnerId(producer.getCurrentUser());
-    return catService.save(catData);
+    catData.setOwnerId(userService.getCurrentUser().getId());
+    return producer.saveCat(catData);
   }
 
   @PutMapping
   public void updateCat(@Valid @NonNull @RequestBody CatDto catData) {
     checkCatById(catData.getId());
-    catService.update(catData);
+    producer.updateCat(catData);
   }
 
   @DeleteMapping("/{id}")
   public void deleteCat(@NonNull @PathVariable Long id) {
     checkCatById(id);
-    catService.delete(id);
+    producer.deleteCatById(id);
   }
 
   private void checkCatById(Long catId) {
-    Long currentUserId = producer.getCurrentUser();
-    var checkData = catService.getById(catId);
+    Long currentUserId = userService.getCurrentUser().getId();
+    var checkData = producer.getCatById(catId);
 
     if (checkData == null) {
       throw new IllegalArgumentException("Cat not found with id: " + catId);

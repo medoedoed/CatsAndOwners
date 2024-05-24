@@ -1,4 +1,4 @@
-package ru.medoedoed.jpaEntity;
+package ru.medoedoed.jpa;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.medoedoed.jpaEntity.JpaEntity;
 
 @Entity
 @Setter

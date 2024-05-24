@@ -2,10 +2,8 @@ package ru.medoedoed.utils;
 
 import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
-import ru.medoedoed.crudService.DataApplicator;
-import ru.medoedoed.jpaEntity.CatColorJpa;
-import ru.medoedoed.models.CatColor;
-import ru.medoedoed.models.dataEntities.CatColorDto;
+import ru.medoedoed.applicators.DataApplicator;
+import ru.medoedoed.jpa.CatColorJpa;
 import ru.medoedoed.models.dataModels.CatColorDto;
 
 @Component

@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import ru.medoedoed.applicators.DataApplicator;
 import ru.medoedoed.jpaEntity.JpaEntity;
 
 @RequiredArgsConstructor

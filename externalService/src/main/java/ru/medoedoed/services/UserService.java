@@ -3,10 +3,10 @@ package ru.medoedoed.services;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import ru.medoedoed.crudService.DataApplicator;
+import ru.medoedoed.applicators.DataApplicator;
 import ru.medoedoed.crudService.ServiceImpl;
 import ru.medoedoed.dao.UserDao;
-import ru.medoedoed.jpaEntity.UserJpa;
+import ru.medoedoed.jpa.UserJpa;
 import ru.medoedoed.models.dataModels.UserDto;
 import ru.medoedoed.role.Role;
 

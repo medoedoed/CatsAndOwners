@@ -6,37 +6,41 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataModels.CatColorDto;
-import ru.medoedoed.services.ColorService;
+import ru.medoedoed.rabbitmq.ExternalRabbitProducer;
+import ru.medoedoed.utils.AccessProvider;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/colors")
 public class ColorController {
+  private final ExternalRabbitProducer producer;
+  private final AccessProvider accessProvider;
+
   @GetMapping("/{id}")
   public CatColorDto getColor(@PathVariable @NonNull Long id) {
-    return colorService.getById(id);
+    return producer.getColorById(id);
   }
 
   @GetMapping()
   public List<CatColorDto> getAll() {
-    return colorService.getAll();
+    return producer.getAllColors();
   }
 
   @PostMapping()
   public long newColor(@RequestBody @Valid @NonNull CatColorDto colorData) {
-//    accessProvider.checkAdmin(); TODO
-    return colorService.save(colorData);
+    accessProvider.checkAdmin();
+    return producer.saveColor(colorData);
   }
 
   @PutMapping()
   public void updateColor(@Valid @NonNull @RequestBody CatColorDto colorData) {
-//    accessProvider.checkAdmin(); TODO
-    colorService.update(colorData);
+    accessProvider.checkAdmin();
+    producer.updateColor(colorData);
   }
 
   @DeleteMapping("/{id}")
   public void deleteColor(@NonNull @PathVariable Long id) {
-//    accessProvider.checkAdmin(); TODO
-    colorService.delete(id);
+    accessProvider.checkAdmin();
+    producer.deleteColorById(id);
   }
 }

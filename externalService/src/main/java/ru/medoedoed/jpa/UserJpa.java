@@ -1,10 +1,11 @@
-package ru.medoedoed.jpaEntity;
+package ru.medoedoed.jpa;
 
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.medoedoed.jpaEntity.JpaEntity;
 import ru.medoedoed.role.Role;
 
 @Entity

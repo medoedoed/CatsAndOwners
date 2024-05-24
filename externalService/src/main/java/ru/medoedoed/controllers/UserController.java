@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.medoedoed.models.dataModels.OwnerDto;
-import ru.medoedoed.rabbitmq.AuthRabbitProducer;
+import ru.medoedoed.rabbitmq.ExternalRabbitProducer;
 import ru.medoedoed.services.UserService;
 
 @RestController
@@ -13,7 +13,7 @@ import ru.medoedoed.services.UserService;
 @Valid
 public class UserController {
   private final UserService userService;
-  private final AuthRabbitProducer producer;
+  private final ExternalRabbitProducer producer;
 
   @PostMapping("/set-owner/{id}")
   public void setOwner(@Valid @PathVariable Long id) {
@@ -38,7 +38,7 @@ public class UserController {
 
   @DeleteMapping("/owner/{ownerId}")
   public void deleteOwner(@Valid @PathVariable Long ownerId) {
-//    ownerService.delete(ownerId); TODO
+    producer.deleteOwner(ownerId);
   }
 }
 
