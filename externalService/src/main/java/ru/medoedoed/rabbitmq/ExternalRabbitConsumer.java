@@ -2,17 +2,13 @@ package ru.medoedoed.rabbitmq;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Component;
-import ru.medoedoed.services.UserService;
 
 @Component
 @EnableRabbit
 @RequiredArgsConstructor
 public class ExternalRabbitConsumer {
-  private final UserService userService;
+  private final RabbitTemplate rabbitTemplate;
 
-//  @RabbitListener(queues = "user.requestCurrentUser")
-//  public Long sendCurrentUser() {
-//    return userService.getCurrentUser().getId();
-//  }
 }
