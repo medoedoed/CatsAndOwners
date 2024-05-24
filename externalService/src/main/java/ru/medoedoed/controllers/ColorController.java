@@ -12,8 +12,6 @@ import ru.medoedoed.services.ColorService;
 @RequiredArgsConstructor
 @RequestMapping("/colors")
 public class ColorController {
-  private final ColorService colorService;
-
   @GetMapping("/{id}")
   public CatColorDto getColor(@PathVariable @NonNull Long id) {
     return colorService.getById(id);

@@ -1,5 +1,5 @@
 rootProject.name = 'CatsAndOwners'
-include 'authService'
+include 'externalService'
 include 'catService'
 include 'catColorService'
 include 'ownerService'

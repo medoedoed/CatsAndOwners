@@ -2,7 +2,6 @@ package ru.medoedoed.rabbitmq;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import ru.medoedoed.models.dataModels.OwnerDto;
 import ru.medoedoed.services.OwnerService;
