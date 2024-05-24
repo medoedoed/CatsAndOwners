@@ -26,7 +26,6 @@ import ru.medoedoed.services.UserService;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private final JwtService jwtService;
-  private final RabbitTemplate rabbitTemplate;
   private final UserService userService;
 
   @Override

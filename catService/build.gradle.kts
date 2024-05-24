@@ -16,10 +16,10 @@ dependencies {
     implementation(project(":commonLibrary"))
 
     implementation("org.postgresql:postgresql")
-    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
 }
 
 tasks.test {

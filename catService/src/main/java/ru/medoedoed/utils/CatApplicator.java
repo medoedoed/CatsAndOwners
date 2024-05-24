@@ -62,5 +62,4 @@ public class CatApplicator implements DataApplicator<CatDto, CatJpa> {
             .build();
   }
 }
-}
 
