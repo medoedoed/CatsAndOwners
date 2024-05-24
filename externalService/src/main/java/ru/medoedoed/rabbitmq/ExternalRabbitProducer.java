@@ -14,7 +14,7 @@ public class ExternalRabbitProducer {
   private final RabbitTemplate rabbitTemplate;
 
   public List<CatDto> getAllCats() {
-    return (List<CatDto>) rabbitTemplate.receive("cats.getAll");
+    return (List<CatDto>) rabbitTemplate.convertSendAndReceive("cats.getAll", 1);
   }
 
   public CatDto getCatById(Long catId) {

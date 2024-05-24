@@ -19,7 +19,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation( "org.springframework.boot:spring-boot-starter-validation:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
 }
 
 tasks.test {

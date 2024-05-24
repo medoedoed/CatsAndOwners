@@ -26,6 +26,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security:3.2.4")
     implementation("org.springframework.boot:spring-boot-starter-amqp")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.2")
 
 
     implementation("io.jsonwebtoken:jjwt-api:0.12.5")

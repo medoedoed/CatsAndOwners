@@ -41,7 +41,8 @@ public class SecurityConfiguration {
                     .hasAuthority("ADMIN_ROLE")
                     .requestMatchers(
                         "/user/set-owner/**", "/user/owner", "/user/owner/**", "/cats/**")
-                    .authenticated()
+                        .permitAll()
+//                    .authenticated()
                     .requestMatchers("/**")
                     .permitAll())
         .sessionManagement(

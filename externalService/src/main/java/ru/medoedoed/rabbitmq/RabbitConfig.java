@@ -1,7 +1,6 @@
 package ru.medoedoed.rabbitmq;
 
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -15,7 +14,10 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
   @Bean
   public ConnectionFactory connectionFactory() {
-    return new CachingConnectionFactory("localhost");
+    var factory = new CachingConnectionFactory("localhost");
+    factory.setUsername("guest");
+    factory.setPassword("guest");
+    return factory;
   }
 
   @Bean
@@ -24,7 +26,7 @@ public class RabbitConfig {
   }
 
   @Bean
-  public AmqpAdmin amqpAdmin() {
+  public RabbitAdmin amqpAdmin() {
     return new RabbitAdmin(connectionFactory());
   }
 
@@ -33,14 +35,6 @@ public class RabbitConfig {
     RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
     rabbitTemplate.setMessageConverter(jsonMessageConverter());
     return rabbitTemplate;
-  }
-
-  @Bean
-  public SimpleRabbitListenerContainerFactory rabbitListenerContainerFactory() {
-    SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
-    factory.setConnectionFactory(connectionFactory());
-    factory.setMessageConverter(jsonMessageConverter());
-    return factory;
   }
 
   @Bean
