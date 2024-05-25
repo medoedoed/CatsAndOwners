@@ -3,6 +3,7 @@ package ru.medoedoed.rabbitmq;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import ru.medoedoed.models.dataModels.CatColorDto;
 import ru.medoedoed.models.dataModels.CatDto;
@@ -38,8 +39,7 @@ public class ExternalRabbitProducer {
   }
 
   public List<CatColorDto> getAllColors() {
-    return (List<CatColorDto>) rabbitTemplate.receive("color.getAll");
-  }
+    return rabbitTemplate.receiveAndConvert("colors.getAll", new ParameterizedTypeReference<>() {});  }
 
   public Long saveColor(CatColorDto colorData) {
     return (Long) rabbitTemplate.convertSendAndReceive("colors.save", colorData);
@@ -54,22 +54,22 @@ public class ExternalRabbitProducer {
   }
 
   public OwnerDto getOwnerById(Long id) {
-    return (OwnerDto) rabbitTemplate.convertSendAndReceive("owner.getById", id);
+    return (OwnerDto) rabbitTemplate.convertSendAndReceive("owners.getById", id);
   }
 
-  public List<OwnerDto> getAllUsers() {
-    return (List<OwnerDto>) rabbitTemplate.receive("owner.getAll");
+  public Iterable<OwnerDto> getAllUsers() {
+    return (List<OwnerDto>) rabbitTemplate.receiveAndConvert("owners.getAll");
   }
 
   public Long saveOwner(OwnerDto ownerData) {
-    return (Long) rabbitTemplate.convertSendAndReceive("owner.save", ownerData);
+    return (Long) rabbitTemplate.convertSendAndReceive("owners.save", ownerData);
   }
 
   public void updateOwner(OwnerDto ownerData) {
-    rabbitTemplate.convertAndSend("owner.update", ownerData);
+    rabbitTemplate.convertAndSend("owners.update", ownerData);
   }
 
   public void deleteOwner(Long id) {
-    rabbitTemplate.convertAndSend("owner.delete", id);
+    rabbitTemplate.convertAndSend("owners.delete", id);
   }
 }

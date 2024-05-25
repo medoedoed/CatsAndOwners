@@ -21,14 +21,14 @@ public class ColorController {
     return producer.getColorById(id);
   }
 
-  @GetMapping()
+  @GetMapping("/all")
   public List<CatColorDto> getAll() {
     return producer.getAllColors();
   }
 
   @PostMapping()
   public long newColor(@RequestBody @Valid @NonNull CatColorDto colorData) {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin();
     return producer.saveColor(colorData);
   }
 

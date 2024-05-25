@@ -16,7 +16,8 @@ public class ColorRabbitConsumer {
 
   @RabbitListener(queues = "colors.getAll")
   public List<CatColorDto> getAll() {
-    return colorService.getAll();
+    var list = colorService.getAll();
+    return list;
   }
 
   @RabbitListener(queues = "colors.getById")

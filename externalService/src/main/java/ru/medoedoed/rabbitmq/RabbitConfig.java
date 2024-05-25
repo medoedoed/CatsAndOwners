@@ -69,7 +69,7 @@ public class RabbitConfig {
 
   @Bean
   public Queue colorsGetByIdQueue() {
-    return new Queue("colors.getById");
+    return new Queue("colors.getById", true, true, false);
   }
 
   @Bean
@@ -89,26 +89,26 @@ public class RabbitConfig {
 
   @Bean
   public Queue ownerGetByIdQueue() {
-    return new Queue("owner.getById");
+    return new Queue("owners.getById");
   }
 
   @Bean
   public Queue ownerGetAllQueue() {
-    return new Queue("owner.getAll");
+    return new Queue("owners.getAll");
   }
 
   @Bean
   public Queue ownerSaveQueue() {
-    return new Queue("owner.save");
+    return new Queue("owners.save");
   }
 
   @Bean
   public Queue ownerDeleteQueue() {
-    return new Queue("owner.delete");
+    return new Queue("owners.delete");
   }
 
   @Bean
   public Queue ownerUpdateQueue() {
-    return new Queue("owner.update");
+    return new Queue("owners.update");
   }
 }

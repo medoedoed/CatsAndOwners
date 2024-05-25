@@ -1,6 +1,7 @@
 package ru.medoedoed.rabbitmq;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import ru.medoedoed.models.dataModels.OwnerDto;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@EnableRabbit
 public class OwnerRabbitConsumer {
   private final OwnerService ownerService;
 

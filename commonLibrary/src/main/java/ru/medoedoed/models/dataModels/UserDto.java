@@ -1,5 +1,7 @@
 package ru.medoedoed.models.dataModels;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
@@ -22,4 +24,18 @@ public class UserDto {
 
   @NotBlank
   private Role role;
+
+  @JsonCreator
+  public UserDto(
+      @JsonProperty("id") Long id,
+      @JsonProperty("username") String username,
+      @JsonProperty("ownerId") @Nullable Long ownerId,
+      @JsonProperty("password") String password,
+      @JsonProperty("role") Role role) {
+    this.id = id;
+    this.username = username;
+    this.ownerId = ownerId;
+    this.password = password;
+    this.role = role;
+  }
 }

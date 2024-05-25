@@ -1,15 +1,12 @@
 package ru.medoedoed.rabbitmq;
 
-import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Queue;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,26 +39,26 @@ public class RabbitConfig {
 
   @Bean
   public Queue ownerGetByIdQueue() {
-    return new Queue("owner.getById");
+    return new Queue("owners.getById");
   }
 
   @Bean
   public Queue ownerGetAllQueue() {
-    return new Queue("owner.getAll");
+    return new Queue("owners.getAll");
   }
 
   @Bean
   public Queue ownerSaveQueue() {
-    return new Queue("owner.save");
+    return new Queue("owners.save");
   }
 
   @Bean
   public Queue ownerDeleteQueue() {
-    return new Queue("owner.delete");
+    return new Queue("owners.delete");
   }
 
   @Bean
   public Queue ownerUpdateQueue() {
-    return new Queue("owner.update");
+    return new Queue("owners.update");
   }
 }

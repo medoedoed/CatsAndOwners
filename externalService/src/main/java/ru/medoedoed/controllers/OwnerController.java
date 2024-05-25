@@ -17,18 +17,18 @@ public class OwnerController {
 
   @GetMapping("/{id}")
   public OwnerDto getOwner(@PathVariable @NonNull Long id) {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin();
     return producer.getOwnerById(id);
   }
 
   @GetMapping()
   public Iterable<OwnerDto> getAll() {
-    accessProvider.checkAdmin();
+//    accessProvider.checkAdmin();
     return producer.getAllUsers();
   }
 
   @PostMapping
-  public long newOwner(@RequestBody @Valid @NonNull OwnerDto ownerData) {
+  public Long newOwner(@RequestBody @Valid @NonNull OwnerDto ownerData) {
     return producer.saveOwner(ownerData);
   }
 
