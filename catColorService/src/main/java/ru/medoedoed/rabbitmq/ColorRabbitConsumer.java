@@ -16,13 +16,14 @@ public class ColorRabbitConsumer {
 
   @RabbitListener(queues = "colors.getAll")
   public List<CatColorDto> getAll() {
-    var list = colorService.getAll();
-    return list;
+    return colorService.getAll();
   }
 
   @RabbitListener(queues = "colors.getById")
-  public CatColorDto getColorById(Long catId) {
-    return colorService.getById(catId);
+  public CatColorDto getColorById(Long colorId) {
+    System.out.println(colorService.getById(colorId));
+
+    return colorService.getById(colorId);
   }
 
   @RabbitListener(queues = "colors.save")

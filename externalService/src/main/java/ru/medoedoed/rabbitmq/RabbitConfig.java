@@ -69,7 +69,7 @@ public class RabbitConfig {
 
   @Bean
   public Queue colorsGetByIdQueue() {
-    return new Queue("colors.getById", true, true, false);
+    return new Queue("colors.getById");
   }
 
   @Bean

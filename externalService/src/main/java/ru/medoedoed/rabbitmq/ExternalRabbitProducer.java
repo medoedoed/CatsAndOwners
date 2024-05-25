@@ -35,11 +35,12 @@ public class ExternalRabbitProducer {
   }
 
   public CatColorDto getColorById(Long id) {
-    return (CatColorDto) rabbitTemplate.convertSendAndReceive("colors.getColorById", id);
+    return (CatColorDto) rabbitTemplate.convertSendAndReceive("colors.getById", id);
   }
 
   public List<CatColorDto> getAllColors() {
-    return rabbitTemplate.receiveAndConvert("colors.getAll", new ParameterizedTypeReference<>() {});  }
+    return (List<CatColorDto>) rabbitTemplate.convertSendAndReceive("colors.getAll", 1);
+  }
 
   public Long saveColor(CatColorDto colorData) {
     return (Long) rabbitTemplate.convertSendAndReceive("colors.save", colorData);
@@ -57,8 +58,8 @@ public class ExternalRabbitProducer {
     return (OwnerDto) rabbitTemplate.convertSendAndReceive("owners.getById", id);
   }
 
-  public Iterable<OwnerDto> getAllUsers() {
-    return (List<OwnerDto>) rabbitTemplate.receiveAndConvert("owners.getAll");
+  public List<OwnerDto> getAllUsers() {
+    return (List<OwnerDto>) rabbitTemplate.convertSendAndReceive("owners.getAll", 1);
   }
 
   public Long saveOwner(OwnerDto ownerData) {
